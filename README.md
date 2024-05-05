@@ -82,4 +82,6 @@ Após a criação, conecte-se ao banco de dados usando um cliente MySQL (por exe
 ![alt text](images/image2.jpg)
 ![alt text](images/image4.jpg)
 ![alt text](images/image5.jpg)
+
+# Resultado consulta final
 ![alt text](images/image6.jpg)
