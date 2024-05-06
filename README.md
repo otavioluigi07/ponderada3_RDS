@@ -13,7 +13,7 @@ Table Paciente {
   data_nascimento date
   endereco varchar(255)
   numero_contato varchar(20)
-  historico_medico longtext
+  historico_medico text
 }
 
 Table UnidadeSaude {
@@ -28,7 +28,7 @@ Table ProdutoMedico {
   produto_id int [pk]
   nome varchar(100)
   tipo varchar(50)
-  descricao longtext
+  descricao text
   quantidade_estoque int
 }
 
@@ -48,15 +48,28 @@ Table RotaTransporte {
   veiculo_id int [ref: > VeiculoTransporte.veiculo_id]
 }
 
-Table TransportePaciente {
-  transporte_id int [pk]
-  paciente_id int [ref: > Paciente.paciente_id]
-  rota_id int [ref: > RotaTransporte.rota_id]
-  data_transporte varchar(255)
+Table Atendimento {
+  paciente_id int
+  unidade_id int
+  foreign key (paciente_id) references Paciente(paciente_id)
+  foreign key (unidade_id) references UnidadeSaude(unidade_id)
+  primary key (paciente_id, unidade_id)
+}
+
+Table Estoque {
+  unidade_id int
+  produto_id int
+  quantidade int
+  foreign key (unidade_id) references UnidadeSaude(unidade_id)
+  foreign key (produto_id) references ProdutoMedico(produto_id)
+  primary key (unidade_id, produto_id)
 }
 '''
 # Modelo Lógico - Imagem
 ![alt text](images/modelologico.png)
+
+Fiz uma outra versão para a solução do problema:
+![alt text](images/modeo2.png)
 
 # Deploy no MySQL RDS da AWS
 Acesse o Console AWS e vá para o serviço RDS.
